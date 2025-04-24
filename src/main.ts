@@ -1,9 +1,9 @@
-import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { EnvVar } from './common/config/config.instances';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
+import { AppModule } from './app.module';
+import { EnvVar } from './common/config/config.instances';
 import { CustomExceptionFilter } from './common/custom-exception.filter';
 
 // import express from 'express';
@@ -16,7 +16,8 @@ async function bootstrap() {
   // app.use(express.json());
   // app.use(express.urlencoded({ extended: true }));
   app.enableCors({
-    origin: true,
+    origin: 'todo-frontend-sigma-eight.vercel.app',
+    // origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
