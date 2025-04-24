@@ -16,7 +16,11 @@ async function bootstrap() {
   // app.use(express.json());
   // app.use(express.urlencoded({ extended: true }));
   app.enableCors({
-    origin: 'todo-frontend-sigma-eight.vercel.app',
+    origin: [
+      'todo-frontend-sigma-eight.vercel.app',
+      'https://todo-frontend-sigma-eight.vercel.app',
+      'vercel.app',
+    ],
     // origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
