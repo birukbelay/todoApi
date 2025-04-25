@@ -2,10 +2,28 @@ version: '3.9'
 services:
   app:
     build: .
-#      context: .
-#      target: development
     ports:
-      - "3000:3000"
+      - "9001:9001"  # mypc:dockerContainer
     environment:
-      - NODE_ENV=production
-    env_file: .env.production
+      - NODE_ENV=docker
+      - MONGO_HOST=mongo:27017
+    env_file: .env.docker
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27018:27017' # Expose MongoDB port (optional for local access)
+    volumes:
+      - mongo-data:/data/db # Persist MongoDB data
+    networks:
+      - app-network
+
+volumes:
+  mongo-data: # Named volume for MongoDB data persistence
+
+networks:
+  app-network:
+    driver: bridge

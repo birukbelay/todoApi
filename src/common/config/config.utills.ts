@@ -17,7 +17,7 @@ export function getMongoUri(uri: string, required = false, defaultVal = '') {
   if (process.env['NODE_ENV'] == 'test') {
     return tryReadEnv(ENV_NAMES.MONGO_TEST_DATABASE, required);
   }
-  const mongolLocalString = `mongodb://127.0.0.1:27017/${MONGO_DATABASE_NAME}`;
+  const mongolLocalString = `mongodb://${MONGO_HOST}/${MONGO_DATABASE_NAME}`;
   logTrace('getting mongo Uri', uri);
   logTrace('getting mongo Uri', mongolLocalString);
   return mongolLocalString;

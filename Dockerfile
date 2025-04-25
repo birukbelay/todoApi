@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20
 
 # Create app directory
 WORKDIR /app
@@ -15,14 +15,6 @@ COPY . .
 RUN ls -l
 # Build the project
 RUN npm run build
-#
-## Stage 2: Setup the production environment
-#FROM node:18-alpine
-#
-#WORKDIR /app
-#
-#COPY --from=builder /app/dist ./dist
-#COPY --from=builder /app/node_modules ./node_modules
 
 # Your app binds to port 3000 so use the EXPOSE instruction
 EXPOSE 3000
